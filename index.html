@@ -15,9 +15,10 @@
   </header>
 
   <main>
-    <section class="hero panel">
-      <div><span class="pill">Lv.<span id="level">1</span></span><h2>문별이의 방이 열렸어요 ✦</h2><p id="missionText">카드를 모으고, 중복 카드를 합성해 더 희귀한 별이를 만나보세요.</p></div>
+    <section class="hero panel mission-hero">
+      <div class="mission-intro"><span class="pill">賺錢方式 Lv.2</span><h2>지정 카드를 모아 별을 벌어보세요 ✦</h2><p id="missionText">收集指定序號的卡牌並提交。提交時會消耗指定卡牌並兌換 ⭐；任務依合成難度提供不同獎勵。</p></div>
       <button class="ghost" id="resetBtn">↺ 重置</button>
+      <div id="missionList" class="mission-list"></div>
     </section>
 
     <section class="stats-grid">
@@ -31,7 +32,7 @@
         <div><div class="eyebrow">MERGE</div><h2>🧩 合成區</h2></div>
         <button class="small" id="organizeBtn">一鍵整理</button>
       </div>
-      <p class="muted merge-tip">拖曳兩張相同卡片合成升級；拖到下方紅色區域可以出售。</p>
+      <p class="muted merge-tip">拖曳兩張相同序號卡合成：01 → 02 → 03 → … → 12；拖到下方紅色區域可以出售。</p>
 
       <div class="merge-toolbar">
         <div class="summon-control">
@@ -49,7 +50,7 @@
       </div>
 
       <div id="sellZone" class="sell-zone"><span>🗑️</span><b>拖曳至此出售</b><small>COMMON +80 · RARE +220 · STAR +600</small></div>
-      <button class="auto-merge" id="autoMergeBtn">✨ 一鍵合成所有可合成卡</button>
+      <button class="auto-merge" id="autoMergeBtn">✨ 一鍵按序升級所有可合成卡</button>
     </section>
 
     <section class="panel" id="view-shop">
