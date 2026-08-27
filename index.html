@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#16111f" />
+  <title>별이 HANDBOOK</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="stars"></div>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">MOONBYUL ONLY</div>
+      <h1 id="logo">별이 HANDBOOK</h1>
+    </div>
+    <div class="currency">⭐ <span id="coins">0</span></div>
+  </header>
+
+  <main>
+    <section class="hero panel">
+      <div>
+        <span class="pill">Lv.<span id="level">1</span></span>
+        <h2>문별이의 방이 열렸어요 ✦</h2>
+        <p id="missionText">카드를 모으고, 중복 카드를 합성해 더 희귀한 별이를 만나보세요.</p>
+      </div>
+      <button class="ghost" id="resetBtn">↺ 重置</button>
+    </section>
+
+    <section class="stats-grid">
+      <div class="stat"><span>收集度</span><strong id="collectionStat">0 / 12</strong></div>
+      <div class="stat"><span>持有卡片</span><strong id="ownedStat">0</strong></div>
+      <div class="stat"><span>已拆卡包</span><strong id="openedStat">0</strong></div>
+    </section>
+
+    <section class="panel active-view" id="view-merge">
+      <div class="section-head"><div><div class="eyebrow">MERGE</div><h2>🧩 合成區</h2></div><button class="small" id="autoMergeBtn">一鍵合成</button></div>
+      <p class="muted">3 張相同稀有度的重複卡 → 1 張更高稀有度 Moonbyul 卡。</p>
+      <div id="mergeGroups" class="merge-groups"></div>
+    </section>
+
+    <section class="panel" id="view-shop">
+      <div class="section-head"><div><div class="eyebrow">SHOP</div><h2>🛒 盲盒商店</h2></div></div>
+      <div class="shop-grid">
+        <button class="pack" data-pack="small"><b>小卡包</b><span>5 張</span><em>2,500 ⭐</em></button>
+        <button class="pack" data-pack="big"><b>大卡包</b><span>10 張</span><em>4,500 ⭐</em></button>
+        <button class="pack premium" data-pack="surprise"><b>驚喜卡包</b><span>3 張 · 高稀有率</span><em>4,000 ⭐</em></button>
+      </div>
+      <div class="inventory-row">
+        <span>📦 小卡包 <b id="smallCount">0</b></span><span>📦 大卡包 <b id="bigCount">0</b></span><span>🎁 驚喜包 <b id="surpriseCount">0</b></span>
+      </div>
+    </section>
+
+    <section class="panel" id="view-open">
+      <div class="section-head"><div><div class="eyebrow">OPEN</div><h2>✨ 拆卡區</h2></div></div>
+      <div class="open-buttons">
+        <button data-open="small">撕開小卡包</button>
+        <button data-open="big">撕開大卡包</button>
+        <button data-open="surprise">撕開驚喜卡包</button>
+      </div>
+      <div id="openMessage" class="open-message">等待拆卡…</div>
+      <div id="revealGrid" class="reveal-grid"></div>
+    </section>
+
+    <section class="panel" id="view-book">
+      <div class="section-head"><div><div class="eyebrow">HANDBOOK</div><h2>📚 圖鑑</h2></div><div class="filter-row"><button class="small filter active" data-filter="all">全部</button><button class="small filter" data-filter="owned">已擁有</button></div></div>
+      <div id="cardGrid" class="card-grid"></div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="nav active" data-view="merge">🧩<span>合成</span></button>
+    <button class="nav" data-view="shop">🛒<span>商店</span></button>
+    <button class="nav" data-view="open">✨<span>拆卡</span></button>
+    <button class="nav" data-view="book">📚<span>圖鑑</span></button>
+    <button class="nav" id="settingsBtn">⚙️<span>設定</span></button>
+  </nav>
+
+  <dialog id="settingsDialog">
+    <div class="dialog-head"><h3>⚙️ 設定</h3><button class="icon" data-close>×</button></div>
+    <button class="dialog-button" id="exportBtn">📤 產生引繼碼</button>
+    <button class="dialog-button" id="importBtn">📥 讀取引繼碼</button>
+    <button class="dialog-button" id="albumBtn">📖 紀念冊</button>
+    <p class="muted tiny">進度會自動儲存在這個瀏覽器中。</p>
+  </dialog>
+
+  <dialog id="albumDialog">
+    <div class="dialog-head"><h3>📖 紀念冊</h3><button class="icon" data-close>×</button></div>
+    <p class="muted tiny">點擊你喜歡的卡加入／移出紀念冊。</p>
+    <div id="albumGrid" class="card-grid compact"></div>
+  </dialog>
+
+  <dialog id="codeDialog">
+    <div class="dialog-head"><h3 id="codeTitle">進度轉移</h3><button class="icon" data-close>×</button></div>
+    <textarea id="codeArea" rows="8" placeholder="引繼碼"></textarea>
+    <button class="dialog-button" id="codeAction">複製</button>
+  </dialog>
+
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
