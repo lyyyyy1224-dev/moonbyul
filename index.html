@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
   <meta name="theme-color" content="#16111f" />
   <title>별이 HANDBOOK</title>
   <link rel="stylesheet" href="style.css" />
@@ -10,20 +10,13 @@
 <body>
   <div class="stars"></div>
   <header class="topbar">
-    <div>
-      <div class="eyebrow">MOONBYUL ONLY</div>
-      <h1 id="logo">별이 HANDBOOK</h1>
-    </div>
+    <div><div class="eyebrow">MOONBYUL ONLY</div><h1 id="logo">별이 HANDBOOK</h1></div>
     <div class="currency">⭐ <span id="coins">0</span></div>
   </header>
 
   <main>
     <section class="hero panel">
-      <div>
-        <span class="pill">Lv.<span id="level">1</span></span>
-        <h2>문별이의 방이 열렸어요 ✦</h2>
-        <p id="missionText">카드를 모으고, 중복 카드를 합성해 더 희귀한 별이를 만나보세요.</p>
-      </div>
+      <div><span class="pill">Lv.<span id="level">1</span></span><h2>문별이의 방이 열렸어요 ✦</h2><p id="missionText">카드를 모으고, 중복 카드를 합성해 더 희귀한 별이를 만나보세요.</p></div>
       <button class="ghost" id="resetBtn">↺ 重置</button>
     </section>
 
@@ -34,9 +27,29 @@
     </section>
 
     <section class="panel active-view" id="view-merge">
-      <div class="section-head"><div><div class="eyebrow">MERGE</div><h2>🧩 合成區</h2></div><button class="small" id="autoMergeBtn">一鍵合成</button></div>
-      <p class="muted">3 張相同稀有度的重複卡 → 1 張更高稀有度 Moonbyul 卡。</p>
-      <div id="mergeGroups" class="merge-groups"></div>
+      <div class="section-head merge-head">
+        <div><div class="eyebrow">MERGE</div><h2>🧩 合成區</h2></div>
+        <button class="small" id="organizeBtn">一鍵整理</button>
+      </div>
+      <p class="muted merge-tip">拖曳兩張相同卡片合成升級；拖到下方紅色區域可以出售。</p>
+
+      <div class="merge-toolbar">
+        <div class="summon-control">
+          <span class="summon-label">召喚目標</span>
+          <div class="stepper"><button id="summonMinus" aria-label="減少">−</button><strong id="summonTarget">3</strong><button id="summonPlus" aria-label="增加">＋</button></div>
+        </div>
+        <button class="summon-button" id="summonBtn">✦ 長按召喚</button>
+      </div>
+      <div class="summon-note">每張召喚消耗 <b>200 ⭐</b> · 輕點召喚一次，長按連續召喚</div>
+
+      <div class="merge-inventory-wrap">
+        <div class="inventory-title"><span>持有卡片</span><span id="mergeInventoryCount">0 張</span></div>
+        <div id="mergeInventory" class="merge-inventory"></div>
+        <div id="emptyMerge" class="empty-merge">還沒有卡片。先召喚或拆卡吧 ✦</div>
+      </div>
+
+      <div id="sellZone" class="sell-zone"><span>🗑️</span><b>拖曳至此出售</b><small>COMMON +80 · RARE +220 · STAR +600</small></div>
+      <button class="auto-merge" id="autoMergeBtn">✨ 一鍵合成所有可合成卡</button>
     </section>
 
     <section class="panel" id="view-shop">
@@ -46,20 +59,13 @@
         <button class="pack" data-pack="big"><b>大卡包</b><span>10 張</span><em>4,500 ⭐</em></button>
         <button class="pack premium" data-pack="surprise"><b>驚喜卡包</b><span>3 張 · 高稀有率</span><em>4,000 ⭐</em></button>
       </div>
-      <div class="inventory-row">
-        <span>📦 小卡包 <b id="smallCount">0</b></span><span>📦 大卡包 <b id="bigCount">0</b></span><span>🎁 驚喜包 <b id="surpriseCount">0</b></span>
-      </div>
+      <div class="inventory-row"><span>📦 小卡包 <b id="smallCount">0</b></span><span>📦 大卡包 <b id="bigCount">0</b></span><span>🎁 驚喜包 <b id="surpriseCount">0</b></span></div>
     </section>
 
     <section class="panel" id="view-open">
       <div class="section-head"><div><div class="eyebrow">OPEN</div><h2>✨ 拆卡區</h2></div></div>
-      <div class="open-buttons">
-        <button data-open="small">撕開小卡包</button>
-        <button data-open="big">撕開大卡包</button>
-        <button data-open="surprise">撕開驚喜卡包</button>
-      </div>
-      <div id="openMessage" class="open-message">等待拆卡…</div>
-      <div id="revealGrid" class="reveal-grid"></div>
+      <div class="open-buttons"><button data-open="small">撕開小卡包</button><button data-open="big">撕開大卡包</button><button data-open="surprise">撕開驚喜卡包</button></div>
+      <div id="openMessage" class="open-message">等待拆卡…</div><div id="revealGrid" class="reveal-grid"></div>
     </section>
 
     <section class="panel" id="view-book">
@@ -69,34 +75,14 @@
   </main>
 
   <nav class="bottom-nav">
-    <button class="nav active" data-view="merge">🧩<span>合成</span></button>
-    <button class="nav" data-view="shop">🛒<span>商店</span></button>
-    <button class="nav" data-view="open">✨<span>拆卡</span></button>
-    <button class="nav" data-view="book">📚<span>圖鑑</span></button>
-    <button class="nav" id="settingsBtn">⚙️<span>設定</span></button>
+    <button class="nav active" data-view="merge">🧩<span>合成</span></button><button class="nav" data-view="shop">🛒<span>商店</span></button><button class="nav" data-view="open">✨<span>拆卡</span></button><button class="nav" data-view="book">📚<span>圖鑑</span></button><button class="nav" id="settingsBtn">⚙️<span>設定</span></button>
   </nav>
 
-  <dialog id="settingsDialog">
-    <div class="dialog-head"><h3>⚙️ 設定</h3><button class="icon" data-close>×</button></div>
-    <button class="dialog-button" id="exportBtn">📤 產生引繼碼</button>
-    <button class="dialog-button" id="importBtn">📥 讀取引繼碼</button>
-    <button class="dialog-button" id="albumBtn">📖 紀念冊</button>
-    <p class="muted tiny">進度會自動儲存在這個瀏覽器中。</p>
-  </dialog>
+  <dialog id="settingsDialog"><div class="dialog-head"><h3>⚙️ 設定</h3><button class="icon" data-close>×</button></div><button class="dialog-button" id="exportBtn">📤 產生引繼碼</button><button class="dialog-button" id="importBtn">📥 讀取引繼碼</button><button class="dialog-button" id="albumBtn">📖 紀念冊</button><p class="muted tiny">進度會自動儲存在這個瀏覽器中。</p></dialog>
+  <dialog id="albumDialog"><div class="dialog-head"><h3>📖 紀念冊</h3><button class="icon" data-close>×</button></div><p class="muted tiny">點擊你喜歡的卡加入／移出紀念冊。</p><div id="albumGrid" class="card-grid compact"></div></dialog>
+  <dialog id="codeDialog"><div class="dialog-head"><h3 id="codeTitle">進度轉移</h3><button class="icon" data-close>×</button></div><textarea id="codeArea" rows="8" placeholder="引繼碼"></textarea><button class="dialog-button" id="codeAction">複製</button></dialog>
 
-  <dialog id="albumDialog">
-    <div class="dialog-head"><h3>📖 紀念冊</h3><button class="icon" data-close>×</button></div>
-    <p class="muted tiny">點擊你喜歡的卡加入／移出紀念冊。</p>
-    <div id="albumGrid" class="card-grid compact"></div>
-  </dialog>
-
-  <dialog id="codeDialog">
-    <div class="dialog-head"><h3 id="codeTitle">進度轉移</h3><button class="icon" data-close>×</button></div>
-    <textarea id="codeArea" rows="8" placeholder="引繼碼"></textarea>
-    <button class="dialog-button" id="codeAction">複製</button>
-  </dialog>
-
-  <div id="toast" class="toast"></div>
+  <div id="dragGhost" class="drag-ghost" hidden></div><div id="toast" class="toast"></div>
   <script src="app.js"></script>
 </body>
 </html>
