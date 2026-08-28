@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
   <meta name="theme-color" content="#16111f" />
   <title>별이 HANDBOOK</title>
-  <link rel="stylesheet" href="style.css?v=1.3.1" />
+  <link rel="stylesheet" href="style.css?v=1.4.0" />
 </head>
 <body>
   <div class="stars"></div>
@@ -16,14 +16,14 @@
 
   <main>
     <section class="hero panel mission-hero">
-      <div class="mission-intro"><span class="pill">賺錢方式 Lv.2 <small style="opacity:.55">v1.3</small></span><h2>지정 카드를 모아 별을 벌어보세요 ✦</h2><p id="missionText">收集指定序號的卡牌並提交。提交時會消耗指定卡牌並兌換 ⭐；任務依合成難度提供不同獎勵。</p></div>
+      <div class="mission-intro"><span class="pill">賺錢方式 Lv.2 <small style="opacity:.55">v1.4</small></span><h2>지정 카드를 모아 별을 벌어보세요 ✦</h2><p id="missionText">收集指定序號的卡牌並提交。提交時會消耗指定卡牌並兌換 ⭐；任務依合成難度提供不同獎勵。</p></div>
       <button class="ghost" id="resetBtn">↺ 重置</button>
       <div id="missionList" class="mission-list"></div>
     </section>
 
     <section class="stats-grid">
-      <div class="stat"><span>收集度</span><strong id="collectionStat">0 / 12</strong></div>
-      <div class="stat"><span>持有卡片</span><strong id="ownedStat">0</strong></div>
+      <div class="stat"><span>圖鑑收集度</span><strong id="collectionStat">0 / 65</strong></div>
+      <div class="stat"><span>合成區卡片</span><strong id="ownedStat">0</strong></div>
       <div class="stat"><span>已拆卡包</span><strong id="openedStat">0</strong></div>
     </section>
 
@@ -41,12 +41,12 @@
         </div>
         <button class="summon-button" id="summonBtn">✦ 長按召喚</button>
       </div>
-      <div class="summon-note">每張召喚消耗 <b>200 ⭐</b> · 輕點召喚一次，長按連續召喚</div>
+      <div class="summon-note">每張召喚消耗 <b>200 ⭐</b> · 等級越高自然出現率越低 · 輕點一次，長按連續召喚</div>
 
       <div class="merge-inventory-wrap">
         <div class="inventory-title"><span>持有卡片</span><span id="mergeInventoryCount">0 張</span></div>
         <div id="mergeInventory" class="merge-inventory"></div>
-        <div id="emptyMerge" class="empty-merge">還沒有卡片。先召喚或拆卡吧 ✦</div>
+        <div id="emptyMerge" class="empty-merge">還沒有合成卡片。先召喚吧 ✦</div>
       </div>
 
       <div id="sellZone" class="sell-zone"><span>🗑️</span><b>拖曳至此出售</b><small>COMMON +80 · RARE +220 · STAR +600</small></div>
@@ -54,11 +54,11 @@
     </section>
 
     <section class="panel" id="view-shop">
-      <div class="section-head"><div><div class="eyebrow">SHOP</div><h2>🛒 盲盒商店</h2></div></div>
+      <div class="section-head"><div><div class="eyebrow">SHOP · COLLECTION ONLY</div><h2>🛒 圖鑑卡包商店</h2></div></div><p class="muted tiny">使用合成區賺到的 ⭐ 購買卡包。卡包只會開出圖鑑卡，不會進入合成板面。</p>
       <div class="shop-grid">
-        <button class="pack" data-pack="small"><b>小卡包</b><span>5 張</span><em>2,500 ⭐</em></button>
-        <button class="pack" data-pack="big"><b>大卡包</b><span>10 張</span><em>4,500 ⭐</em></button>
-        <button class="pack premium" data-pack="surprise"><b>驚喜卡包</b><span>3 張 · 高稀有率</span><em>4,000 ⭐</em></button>
+        <button class="pack" data-pack="small"><b>小卡包</b><span>5 張 · 標準機率</span><em>3,000 ⭐</em></button>
+        <button class="pack" data-pack="big"><b>大卡包</b><span>10 張 · 更划算</span><em>5,500 ⭐</em></button>
+        <button class="pack premium" data-pack="surprise"><b>驚喜卡包</b><span>3 張 · 高 Level 加成</span><em>4,500 ⭐</em></button>
       </div>
       <div class="inventory-row"><span>📦 小卡包 <b id="smallCount">0</b></span><span>📦 大卡包 <b id="bigCount">0</b></span><span>🎁 驚喜包 <b id="surpriseCount">0</b></span></div>
     </section>
@@ -71,7 +71,7 @@
 
     <section class="panel" id="view-book">
       <div class="section-head"><div><div class="eyebrow">HANDBOOK</div><h2>📚 圖鑑</h2></div><div class="filter-row"><button class="small filter active" data-filter="all">全部</button><button class="small filter" data-filter="owned">已擁有</button></div></div>
-      <div id="cardGrid" class="card-grid"></div>
+      <div class="collection-summary"><span>SET 1 <b id="set1Stat">0 / 12</b></span><span>SET 2 <b id="set2Stat">0 / 53</b></span></div><div id="cardGrid" class="collection-sets"></div>
     </section>
   </main>
 
@@ -84,6 +84,6 @@
   <dialog id="codeDialog"><div class="dialog-head"><h3 id="codeTitle">進度轉移</h3><button class="icon" data-close>×</button></div><textarea id="codeArea" rows="8" placeholder="引繼碼"></textarea><button class="dialog-button" id="codeAction">複製</button></dialog>
 
   <div id="dragGhost" class="drag-ghost" hidden></div><div id="toast" class="toast"></div>
-  <script src="app.js?v=1.3.1"></script>
+  <script src="app.js?v=1.4.0"></script>
 </body>
 </html>

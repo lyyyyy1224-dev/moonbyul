@@ -14,3 +14,5 @@
 .mission-copy{display:flex;flex-direction:column;gap:2px;min-width:0}.mission-copy b{font-size:15px}.mission-copy span{font-size:12px;opacity:.65}.mission-copy strong{font-size:13px;color:#ffd65a}
 .mission-submit{border:0;border-radius:999px;padding:9px 12px;font-weight:800;white-space:nowrap}.mission-submit:disabled{opacity:.35}
 @media(max-width:520px){.mission-card{grid-template-columns:50px 1fr auto;padding:8px;gap:8px}.mission-card img{width:50px;height:50px}.mission-submit{padding:8px 9px;font-size:12px}}
+/* v1.4 separated collection sets */
+.collection-summary{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}.collection-summary span{background:#ffffff0a;border:1px solid var(--line);padding:8px 11px;border-radius:999px;font-size:12px}.collection-sets{display:grid;gap:24px}.collection-set{min-width:0}.set-heading{display:flex;justify-content:space-between;align-items:center;margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid var(--line);font-size:13px}.set-heading span{color:var(--muted)}
