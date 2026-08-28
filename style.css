@@ -16,3 +16,9 @@
 @media(max-width:520px){.mission-card{grid-template-columns:50px 1fr auto;padding:8px;gap:8px}.mission-card img{width:50px;height:50px}.mission-submit{padding:8px 9px;font-size:12px}}
 /* v1.4 separated collection sets */
 .collection-summary{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}.collection-summary span{background:#ffffff0a;border:1px solid var(--line);padding:8px 11px;border-radius:999px;font-size:12px}.collection-sets{display:grid;gap:24px}.collection-set{min-width:0}.set-heading{display:flex;justify-content:space-between;align-items:center;margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid var(--line);font-size:13px}.set-heading span{color:var(--muted)}
+
+/* v1.4.1 spoiler-free collection */
+.card.mystery-card{background:radial-gradient(circle at 50% 22%,#5a3b72 0,#24172f 42%,#100b16 100%);border-color:#ffffff24}
+.mystery-back{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:radial-gradient(circle at 20% 20%,#ffffff10 0 1px,transparent 2px),radial-gradient(circle at 75% 35%,#f5b7e822 0 1px,transparent 2px);background-size:31px 31px,43px 43px}
+.mystery-back:before{content:'';position:absolute;inset:9px;border:1px solid #f5b7e84a;border-radius:13px;box-shadow:inset 0 0 24px #9c7cff1f}
+.mystery-stars{font-size:11px;letter-spacing:.2em;color:#f4d7ff99}.mystery-mark{font-size:44px;line-height:1;font-weight:900;color:#fff;text-shadow:0 0 22px #f5b7e888}.mystery-label{font-size:9px;letter-spacing:.22em;color:#ffffff80;font-weight:800}.card.mystery-card .shade{opacity:1}.card.mystery-card .count{font-size:8px;letter-spacing:.08em;color:#ffffff99}.card.mystery-card img{display:none}
